@@ -9,6 +9,13 @@
 
 05111942000025 (Gilbert)
 
+## Preparation
+install cryptography (https://pypi.org/project/cryptography/)
+
+```
+ pip install cryptography
+```
+
 ## Explanation
 
 * Create an application that can send encrypted files to another computer using ALL OF the following encryption algorithms:
