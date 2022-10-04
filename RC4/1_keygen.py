@@ -6,5 +6,5 @@ from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 
 # 2) Save the key into a file
-with open('myTopSecretKey.key', 'wb') as file:
+with open('keygen.key', 'wb') as file:
     file.write(key)
