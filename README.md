@@ -26,7 +26,7 @@
 * You are free to use any programming language
   * Extra mark for using C
 * Plagiarism will get you 0 mark
-* All code must be uploaded to GitHub and commits must be done regularly. Put the link to your group's Github repo on this spreadsheet ASAP.
+* All code must be uploaded to GitHub and commits must be done regularly.
 
 ## Job Description
 
