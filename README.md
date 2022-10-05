@@ -10,10 +10,11 @@
 05111942000025 (Gilbert)
 
 ## Preparation
-install cryptography (https://pypi.org/project/cryptography/)
+install cryptography (https://pypi.org/project/cryptography/) & pycryptodome (https://pypi.org/project/pycryptodome/)
 
 ```
  pip install cryptography
+ pip install pycryptodome
 ```
 
 ## Explanation
