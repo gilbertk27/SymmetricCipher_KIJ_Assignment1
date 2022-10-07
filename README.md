@@ -10,11 +10,18 @@
 05111942000025 (Gilbert)
 
 ## Preparation
-install cryptography (https://pypi.org/project/cryptography/) & pycryptodome (https://pypi.org/project/pycryptodome/)
 
+### AES prerequisite
 ```
  pip install cryptography
  pip install pycryptodome
+```
+
+### DES prerequisite
+```
+! pip install pycryptodome
+! pip install base32hex  
+! pip install pyDES
 ```
 
 ## Explanation
