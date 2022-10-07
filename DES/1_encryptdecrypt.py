@@ -11,7 +11,7 @@ enc_file = open("encryptedDESCBC.enc", "wb")
 enc_file.write(d)
 enc_file.close()
 
-dec_file = open("decryptedDESCBC.enc", "wb")
+dec_file = open("decryptedDESCBC.txt", "wb")
 dec_file.write(k.decrypt(d))
 dec_file.close()
 
