@@ -19,9 +19,9 @@
 
 ### DES prerequisite
 ```
-! pip install pycryptodome
-! pip install base32hex  
-! pip install pyDES
+pip install pycryptodome
+pip install base32hex  
+pip install pyDES
 ```
 
 ## Explanation
