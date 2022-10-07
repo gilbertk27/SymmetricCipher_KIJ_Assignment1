@@ -1,34 +1,38 @@
 import socket
 
-# Initialize Socket Instance
-sock = socket.socket()
-print ("Socket created successfully.")
+IP = socket.gethostbyname(socket.gethostname())
+PORT = 8080
+ADDR = (IP, PORT)
+FORMAT = "utf-8"
+SIZE = 1024
 
-# Defining port and host
-port = 8800
-host = 'localhost'
+def main():
+    """ Staring a TCP socket. """
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Connect socket to the host and port
-sock.connect((host, port))
-print('Connection Established.')
-# Send a greeting to the server
-sock.send('A message from the client'.encode())
+    """ Connecting to the server. """
+    client.connect(ADDR)
 
-# Write File in binary
-file = open('tes.txt', 'wb')
+    """ Opening and reading the file data. """
+    file = open("data/tes.txt", "r")
+    data = file.read()
 
-# Keep receiving data from the server
-line = sock.recv(1024)
+    """ Sending the filename to the server. """
+    client.send("tes.txt".encode(FORMAT))
+    msg = client.recv(SIZE).decode(FORMAT)
+    print(f"[SERVER]: {msg}")
 
-while(line):
-    filepath = f"test/{file}"
-    file.write(line)
-    f = open(filepath, 'a+')
-    msg = f.write()
-    line = sock.recv(1024)
+    """ Sending the file data to the server. """
+    client.send(data.encode(FORMAT))
+    msg = client.recv(SIZE).decode(FORMAT)
+    print(f"[SERVER]: {msg}")
 
-print('File has been received successfully.')
+    """ Closing the file. """
+    file.close()
 
-file.close()
-sock.close()
-print('Connection Closed.')
+    """ Closing the connection from the server. """
+    client.close()
+
+
+if __name__ == "__main__":
+    main()

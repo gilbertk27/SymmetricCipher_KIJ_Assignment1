@@ -1,37 +1,47 @@
 import socket
 
-# Initialize Socket Instance
-sock = socket.socket()
-print ("Socket created successfully.")
+IP = socket.gethostbyname(socket.gethostname())
+PORT = 8080
+ADDR = (IP, PORT)
+SIZE = 1024
+FORMAT = "utf-8"
 
-# Defining port and host
-port = 8800
-host = ''
+def main():
+    print("[STARTING] Server is starting.")
+    """ Staring a TCP socket. """
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# binding to the host and port
-sock.bind((host, port))
+    """ Bind the IP and PORT to the server. """
+    server.bind(ADDR)
 
-# Accepts up to 10 connections
-sock.listen(10)
-print('Socket is listening...')
+    """ Server is listening, i.e., server is now waiting for the client to connected. """
+    server.listen()
+    print("[LISTENING] Server is listening.")
 
-while True:
-    # Establish connection with the clients.
-    con, addr = sock.accept()
-    print('Connected with ', addr)
+    while True:
+        """ Server has accepted the connection from the client. """
+        conn, addr = server.accept()
+        print(f"[NEW CONNECTION] {addr} connected.")
 
-    # Get data from the client
-    data = con.recv(1024)
-    print(data.decode())
-    # Read File in binary
-    file = open('tes.txt', 'rb')
-    line = file.read(1024)
-    # Keep sending data to the client
-    while(line):
-        con.send(line)
-        line = file.read(1024)
-    
-    file.close()
-    print('File has been transferred successfully.')
+        """ Receiving the filename from the client. """
+        filename = conn.recv(SIZE).decode(FORMAT)
+        print(f"[RECV] Receiving the filename.")
+        filepath = f"server/{filename}"
+        file = open(filepath, "a+")
+        conn.send("Filename received.".encode(FORMAT))
 
-    con.close()
+        """ Receiving the file data from the client. """
+        data = conn.recv(SIZE).decode(FORMAT)
+        print(f"[RECV] Receiving the file data.")
+        file.write(data)
+        conn.send("File data received".encode(FORMAT))
+
+        """ Closing the file. """
+        file.close()
+
+        """ Closing the connection from the client. """
+        conn.close()
+        print(f"[DISCONNECTED] {addr} disconnected.")
+
+if __name__ == "__main__":
+    main()
