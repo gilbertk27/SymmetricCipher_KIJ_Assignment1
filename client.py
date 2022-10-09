@@ -1,38 +1,35 @@
 import socket
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
 
-IP = socket.gethostbyname(socket.gethostname())
-PORT = 8080
-ADDR = (IP, PORT)
-FORMAT = "utf-8"
-SIZE = 1024
+sock = socket.socket()
+sock.connect(('127.0.0.1', 8080))
+print('Connected to server')
+sock.send('Client is connected'.encode())
 
-def main():
-    """ Staring a TCP socket. """
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+data = sock.recv(99999)
 
-    """ Connecting to the server. """
-    client.connect(ADDR)
+while(data):
+    input_file = 'encryptedAESCBC.enc' # Input file
+    file_in = open(input_file, 'rb') 
+    iv = file_in.read(16) 
+    ciphered_data = file_in.read()
+    
+    with open('keygen.key', 'rb') as file:
+        key = file.read()
 
-    """ Opening and reading the file data. """
-    file = open("data/tes.txt", "r")
-    data = file.read()
+    cipher = AES.new(key, AES.MODE_CBC, iv=iv) 
+    original_data = unpad(cipher.decrypt(ciphered_data), AES.block_size) 
+    
+    # Write Decrypted file destination
+    file_out = open("decryptedAESCBC.txt", "wb") 
+    file_out.write(original_data)
+    
+    data = sock.recv(99999)
 
-    """ Sending the filename to the server. """
-    client.send("tes.txt".encode(FORMAT))
-    msg = client.recv(SIZE).decode(FORMAT)
-    print(f"[SERVER]: {msg}")
+print('File has been received successfully.')
 
-    """ Sending the file data to the server. """
-    client.send(data.encode(FORMAT))
-    msg = client.recv(SIZE).decode(FORMAT)
-    print(f"[SERVER]: {msg}")
-
-    """ Closing the file. """
-    file.close()
-
-    """ Closing the connection from the server. """
-    client.close()
-
-
-if __name__ == "__main__":
-    main()
+file_out.close()
+file_in.close()
+sock.close()
+print('Connection Closed.')
