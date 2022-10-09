@@ -9,6 +9,9 @@
 
 05111942000025 (Gilbert)
 
+## Report
+https://drive.google.com/file/d/1-wi5G_W1x4zZxhL2Nq_o-QDveIyFh7vo/view?usp=sharing
+
 ## Preparation
 
 ### AES prerequisite
@@ -42,7 +45,3 @@ pip install pyDES
   * Extra mark for using C
 * Plagiarism will get you 0 mark
 * All code must be uploaded to GitHub and commits must be done regularly.
-
-## Job Description
-
-...
