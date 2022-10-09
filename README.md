@@ -9,6 +9,21 @@
 
 05111942000025 (Gilbert)
 
+## Preparation
+
+### AES prerequisite
+```
+ pip install cryptography
+ pip install pycryptodome
+```
+
+### DES prerequisite
+```
+pip install pycryptodome
+pip install base32hex  
+pip install pyDES
+```
+
 ## Explanation
 
 * Create an application that can send encrypted files to another computer using ALL OF the following encryption algorithms:
