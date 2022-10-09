@@ -1,8 +1,5 @@
 import socket
 from Crypto.Cipher import ARC4
-from Crypto.Util.Padding import pad
-from Crypto.Protocol.KDF import PBKDF2
-from Crypto.Random import get_random_bytes
 
 sock = socket.socket()
 sock.connect(('127.0.0.1', 8080))
