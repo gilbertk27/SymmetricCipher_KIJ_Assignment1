@@ -13,22 +13,14 @@ with open('keygen.key', 'rb') as file:
 # with open('input2.txt', 'rb') as file: 
   # data = file.read()
 
-st_enc = time.time()
 encrypted = enc(key,data)
-et_enc = time.time()
-elapsed_time_enc = et_enc - st_enc
-final_res_enc = elapsed_time_enc * 1000 # milisecond
+
 enc_file = open("encrypted.enc", "wb")
 enc_file.write(encrypted)
-print ("Encrypted: %r" % encrypted)
-print ("Elapsed time (Encrypted): %r ms \n"  % final_res_enc)
 
-st_dec = time.time()
+
 decrypted = dec(key,encrypted)
-et_dec = time.time()
-elapsed_time_dec = et_dec - st_dec
-final_res_dec = elapsed_time_dec * 1000 # milisecond
+
 dec_file = open("decrypted.txt", "wb")
 dec_file.write(decrypted)
-print ("Decrypted: %r" % decrypted)
-print ("Elapsed time (Decrypted): %r ms"  % final_res_dec)
+
