@@ -1,8 +1,11 @@
+import time
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from Crypto.Protocol.KDF import PBKDF2
 
-salt = key
+with open('keygen.key', 'rb') as file:
+        salt = file.read()
+
 password = 'password123' # Password provided by the user, can use input() to get this
 
 key = PBKDF2(password, salt, dkLen=32) # Your key that you can encrypt with
