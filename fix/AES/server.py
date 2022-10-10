@@ -31,12 +31,12 @@ while True:
     
     cipher = AES.new(key, AES.MODE_CBC) 
     ciphered_data = cipher.encrypt(pad(data, AES.block_size)) 
-    file_out = open("encyrptedAESCBC.enc", "wb") 
+    file_out = open("encryptedCBC.bin", "wb") 
     file_out.write(cipher.iv)
     file_out.write(ciphered_data) 
     file_out.close()
     
-    file = open("encyrptedAESCBC.enc","rb")
+    file = open("encryptedCBC.bin","rb")
     data = file.read()
     # Keep sending data to the client
     while(data):

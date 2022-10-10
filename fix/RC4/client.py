@@ -13,6 +13,8 @@ def enc(key,data):
 def dec(key,msg):
 		return ARC4.new(key).decrypt(msg)
 
+key = ''
+
 data = sock.recv(99999)
 
 while(data):
@@ -20,8 +22,7 @@ while(data):
     with open('keygen.key', 'rb') as file:
         key = file.read()
     
-    encrypted = enc(key, data)
-    decrypted = dec(key,encrypted)
+    decrypted = dec(key, data)
     dec_file = open("decrypted.txt", "wb")
     dec_file.write(decrypted)
         

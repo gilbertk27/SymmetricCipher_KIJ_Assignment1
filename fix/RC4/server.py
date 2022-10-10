@@ -1,9 +1,5 @@
 import socket
 from Crypto.Cipher import ARC4
-from Crypto.Util.Padding import pad
-from Crypto.Protocol.KDF import PBKDF2
-from Crypto.Random import get_random_bytes
-
 
 sock = socket.socket()
 sock.bind(('127.0.0.1', 8080))
@@ -14,6 +10,8 @@ def enc(key,data):
 
 def dec(key,msg):
 		return ARC4.new(key).decrypt(msg)
+
+key = ''
 
 while True:
     con, addr = sock.accept()
