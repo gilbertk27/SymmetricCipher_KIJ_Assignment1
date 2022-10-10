@@ -1,8 +1,17 @@
+import time
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
+from Crypto.Protocol.KDF import PBKDF2
 
 #CBC
 input_file = 'encryptedCBC.bin' # Input file
+
+with open('keygen.key', 'rb') as file:
+        salt = file.read()
+
+password = 'password123' # Password provided by the user, can use input() to get this
+
+key = PBKDF2(password, salt, dkLen=32) # Your key that you can encrypt with
 
 # Read the data from the file
 file_in = open(input_file, 'rb') 

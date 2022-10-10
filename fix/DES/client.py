@@ -15,7 +15,7 @@ while(data):
         
     # Write Decrypted file destination
     file_out = open("decryptedDESCBC.txt", "wb") 
-    file_out.write(file_out)
+    file_out.write(k.decrypt(data))
     
     data = sock.recv(99999)
 
